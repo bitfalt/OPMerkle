@@ -1,0 +1,3 @@
+[submodule "merkle-web/backend/lib/openzeppelin-contracts"]
+	path = merkle-web/backend/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
