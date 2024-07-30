@@ -8,10 +8,15 @@ contract MerkleClass {
     uint256 public immutable amount;
 
     event Claimed(address account, uint256 amount);
+    event Received(address sender, uint256 amount);
 
     constructor(bytes32 _merkleRoot, uint256 _amount) {
         merkleRoot = _merkleRoot;
         amount = _amount;
+    }
+
+    function deposit() public payable {
+        emit Received(msg.sender, msg.value);
     }
 
     function claim(address _account, bytes32[] calldata _merkleProof) public {
