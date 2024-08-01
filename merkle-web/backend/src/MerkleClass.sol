@@ -19,12 +19,12 @@ contract MerkleClass {
         emit Received(msg.sender, msg.value);
     }
 
-    function claim(address _account, bytes32[] calldata _merkleProof) public {
+    function claim(address _account, bytes32[] memory _merkleProof) public {
         // Verify merkle proof
-        bytes32 node = keccak256(abi.encodePacked(_account, amount));
+        bytes32 leaf = keccak256(bytes.concat(keccak256(abi.encode(_account, amount))));
 
         require(
-            MerkleProof.verify(_merkleProof, merkleRoot, node), 
+            MerkleProof.verify(_merkleProof, merkleRoot, leaf), 
             "MerkleClass: Invalid proof."
         );
 
