@@ -182,6 +182,7 @@ const MerkleProofForm: React.FC = () => {
       // Save the Merkle tree to Firestore
       await saveMerkleTree(merkleTreeData, addr);
 
+      // @ts-expect-error
       const tx = await contract.deposit({ value: amountDeposit });
 
       await tx.wait();
