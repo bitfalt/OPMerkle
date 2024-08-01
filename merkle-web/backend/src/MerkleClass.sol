@@ -28,7 +28,17 @@ contract MerkleClass {
             "MerkleClass: Invalid proof."
         );
 
+        _withdraw(payable(_account));
+
         emit Claimed(_account, amount);
     }
 
+    function _withdraw(address payable _account) internal {
+        require(
+            address(this).balance >= amount, 
+            "MerkleClass: Insufficient balance."
+        );
+
+        _account.transfer(amount);
+    }
 }
